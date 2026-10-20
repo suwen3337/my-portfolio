@@ -101,11 +101,14 @@
   }
 
   /* ---------- About ---------- */
-  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;}
+  .about-grid{display:grid;grid-template-columns:1fr;gap:28px;}
   .about-grid p{color:var(--ink-soft);margin-bottom:16px;}
-  .skills{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;}
+  .skills{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;}
+  .skill-groups{display:flex;flex-direction:column;gap:10px;padding-top:24px;border-top:1px solid var(--line);}
+  .skill-group{display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:start;}
+  .skill-label{font-family:'Spectral','Noto Serif TC',serif;font-style:italic;color:var(--brass);font-size:13.5px;padding-top:4px;}
   .skills span{
-    font-size:13.5px;padding:7px 13px;border:1px solid var(--teal-deep);
+    font-size:12.5px;padding:3px 9px;line-height:1.6;border:1px solid var(--teal-deep);
     color:var(--teal-deep);border-radius:2px;
   }
   @media (max-width:760px){
@@ -237,23 +240,30 @@
     </div>
     <div class="about-grid">
       <div>
-        <p>長榮大學航運管理學系畢業後，先在生產管理崗位上處理排程與流程問題，後來決定轉職走向軟體開發。2026 年於資展國際完成全端就業養成班訓練，主修 C#／.NET Core 與 Vue.js。</p>
-        <p>物流與生管的工作訓練了我拆解流程、抓例外狀況的習慣，這也是我在寫團購結帳、庫存計算這類「規則多、狀態多」的功能時，特別在意的地方——寫程式前會先把所有情境列清楚，再動手實作。</p>
+        <p>長榮大學航運管理學系畢業後，先在生產管理崗位上處理排程與流程問題，後來決定轉職走向軟體開發。2026 年於資展國際完成全端就業養成班訓練，主修 C#／.NET Core 與 Vue.js；結訓後和朋友組隊參加 Google AI Builder Cup，改用 React、TypeScript 與 Firebase／Google Cloud 從零做出一個上線運作的預購平台，也練就了快速上手新技術的能力。</p>
+        <p>物流與生管的工作訓練了我拆解流程、抓例外狀況的習慣。不管是團購結帳、庫存計算，還是訂單權限與資安規則這類「規則多、狀態多」的功能，我都會先把所有情境列清楚、寫好測試，再動手實作。</p>
       </div>
-      <div class="skills">
-        <span>C#</span>
-        <span>.NET Core</span>
-        <span>EF Core</span>
-        <span>ASP.NET MVC</span>
-        <span>Vue.js</span>
-        <span>JavaScript</span>
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>Bootstrap</span>
-        <span>SQL Server</span>
-        <span>Google Cloud Platform (GCP)</span>
-        <span>k6 壓力測試</span>
-        <span>Git</span>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <div class="skill-label">前端</div>
+          <div class="skills"><span>Vue.js</span><span>React</span><span>TypeScript</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Bootstrap</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">後端</div>
+          <div class="skills"><span>C#</span><span>.NET Core</span><span>EF Core</span><span>ASP.NET MVC</span><span>Node.js</span><span>Cloud Functions</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">資料庫</div>
+          <div class="skills"><span>SQL Server</span><span>Firestore</span><span>Firestore Security Rules</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">雲端與 AI</div>
+          <div class="skills"><span>Google Cloud Platform (GCP)</span><span>Firebase</span><span>Vertex AI（Gemini）</span><span>BigQuery</span><span>Looker Studio</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">串接與工具</div>
+          <div class="skills"><span>LINE Pay 串接</span><span>k6 壓力測試</span><span>Git</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -265,6 +275,39 @@
       <span class="num">作品</span>
       <h2>專案</h2>
     </div>
+
+    <!-- Project 0: BunnBaa -->
+    <article class="project">
+      <div class="project-top">
+        <div>
+          <div class="project-tag">團隊專案・Google AI Builder Cup 2026 參賽作品</div>
+          <h3>BunnBaa 飯飽：小吃店 AI 預購平台</h3>
+        </div>
+      </div>
+      <p class="desc">
+        BunnBaa 是給小吃店用的餐點預購平台：顧客提前付款鎖定餐點，越早訂越便宜；店家截單後照確定份數備餐，臨時去不了的餐可以轉讓或捐成愛心餐，減少剩食。
+      </p>
+      <p class="desc">
+        <strong>技術亮點：</strong>訂單一付款就是真金白銀，最怕有人繞過畫面直接改資料庫。我對照 ISO 27001 盤點缺口，用 Firestore Security Rules 補上權限把關：訂單建立時只能是「已鎖定」狀態，買家只能把自己的訂單改成「轉讓中」、其他欄位不准動；核銷、撥款限管理員或該店店主操作，管理員改單會留下不可修改的稽核紀錄。每條規則都在本機 emulator 寫測試驗證，實測結果如下：
+      </p>
+      <div class="stat-row">
+        <span class="stat"><b>65</b>項安全規則測試全數通過</span>
+        <span class="stat"><b>3</b>種角色權限隔離（顧客／店家／管理員）</span>
+      </div>
+      <div class="stack">
+        <span>React</span><span>TypeScript</span><span>Node.js</span><span>Firebase</span><span>Firestore Security Rules</span><span>Cloud Functions</span><span>Vertex AI（Gemini）</span><span>BigQuery</span><span>Looker Studio</span><span>LINE Pay</span>
+      </div>
+      <div class="links" style="margin-bottom:24px;">
+        <a class="btn primary" href="https://bunnbaa-mvp-5474.web.app/#/landing" target="_blank" rel="noopener">線上試用</a>
+      </div>
+      <div class="gallery">
+        <figure><a href="images/bunnbaa/home.png" class="lightbox-link"><img src="images/bunnbaa/home.png" alt="預購首頁，依取餐日期顯示早鳥折扣" loading="lazy"></a><figcaption>預購首頁：越早訂越便宜</figcaption></figure>
+        <figure><a href="images/bunnbaa/vendors.png" class="lightbox-link"><img src="images/bunnbaa/vendors.png" alt="合作店家列表" loading="lazy"></a><figcaption>合作店家</figcaption></figure>
+        <figure><a href="images/bunnbaa/diner-resale-market.png" class="lightbox-link"><img src="images/bunnbaa/diner-resale-market.png" alt="同學轉讓市集（手機版）" loading="lazy"></a><figcaption>轉讓市集（手機版，英文介面）</figcaption></figure>
+        <figure><a href="images/bunnbaa/vendor-dashboard.png" class="lightbox-link"><img src="images/bunnbaa/vendor-dashboard.png" alt="商家後台總覽" loading="lazy"></a><figcaption>商家後台總覽（英文介面）</figcaption></figure>
+        <figure><a href="images/bunnbaa/architecture.png" class="lightbox-link"><img src="images/bunnbaa/architecture.png" alt="BunnBaa 在 Google Cloud 上的系統架構" loading="lazy"></a><figcaption>Google Cloud 系統架構</figcaption></figure>
+      </div>
+    </article>
 
     <!-- Project 1: 期末 -->
     <article class="project">
