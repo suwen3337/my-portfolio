@@ -258,7 +258,7 @@
         </div>
         <div class="skill-group">
           <div class="skill-label">雲端與 AI</div>
-          <div class="skills"><span>Google Cloud Platform (GCP)</span><span>Firebase</span><span>Vertex AI（Gemini）</span><span>BigQuery</span><span>Looker Studio</span></div>
+          <div class="skills"><span>Google Cloud Platform (GCP)</span><span>Firebase</span><span>Firebase Cloud Messaging</span><span>Gemini API（n8n 串接）</span><span>n8n</span></div>
         </div>
         <div class="skill-group">
           <div class="skill-label">串接與工具</div>
@@ -288,7 +288,10 @@
         BunnBaa 是給小吃店用的餐點預購平台：顧客提前付款鎖定餐點，越早訂越便宜；店家截單後照確定份數備餐，臨時去不了的餐可以轉讓或捐成愛心餐，減少剩食。
       </p>
       <p class="desc">
-        <strong>技術亮點：</strong>訂單一付款就是真金白銀，最怕有人繞過畫面直接改資料庫。我對照 ISO 27001 盤點缺口，用 Firestore Security Rules 補上權限把關：訂單建立時只能是「已鎖定」狀態，買家只能把自己的訂單改成「轉讓中」、其他欄位不准動；核銷、撥款限管理員或該店店主操作，管理員改單會留下不可修改的稽核紀錄。每條規則都在本機 emulator 寫測試驗證，實測結果如下：
+        <strong>我的分工：</strong>商家與管理後台、手機門號 OTP 登入、取餐推播提醒、未取餐停權與申訴解封，以及資安權限。Gemini 預購助理與 BigQuery 需求預測等 AI 功能由隊友負責。
+      </p>
+      <p class="desc">
+        <strong>技術亮點：</strong>訂單一付款就是真金白銀，最怕有人繞過畫面直接改資料庫。我對照 ISO 27001 盤點缺口，用 Firestore Security Rules 補上權限把關：訂單建立時只能是「已鎖定」狀態，買家只能把自己的訂單改成「轉讓中」、其他欄位不准動；核銷、撥款限管理員或該店店主操作，管理員改單會留下不可修改的稽核紀錄。規則都在本機 emulator 跑測試驗證，全專案實測結果如下：
       </p>
       <div class="stat-row">
         <span class="stat"><b>65</b>項安全規則測試全數通過</span>
